@@ -15,6 +15,8 @@
 #include "iterator"
 #include <QList>
 
+extern QGraphicsScene * scene;
+
 class Game: public QGraphicsView{
 public:
     Game(QWidget * parent=0);
@@ -26,8 +28,9 @@ public:
     Buyer * buyer;
     int healthPoints;
 private:
-    std::list<Health> healths_;
-    //std::list<Health>::iterator healthIterator;
+
+    //std::vector<Health> healths_;
+    //std::vector<Health>::iterator healthIterator;
     QList<CashRegister> cashes_;
     QList<CashRegister>::iterator cashIterator;
     QList<Buyer> buyers_;

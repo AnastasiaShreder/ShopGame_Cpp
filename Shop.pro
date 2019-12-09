@@ -21,7 +21,9 @@ SOURCES += \
     cashregister.cpp \
     game.cpp \
     health.cpp \
+    healthpoints.cpp \
     main.cpp \
+    queue.cpp \
     score.cpp
 
 HEADERS += \
@@ -29,6 +31,8 @@ HEADERS += \
     cashregister.h \
     game.h \
     health.h \
+    healthpoints.h \
+    queue.h \
     score.h
 
 FORMS += \

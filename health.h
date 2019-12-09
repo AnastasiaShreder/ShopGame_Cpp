@@ -9,7 +9,6 @@ class Health: public QObject,public QGraphicsPixmapItem {
     Q_OBJECT
 public:
   Health(QGraphicsItem * parent=0);
-  void decrease();
 };
 
 #endif
