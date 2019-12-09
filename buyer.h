@@ -11,8 +11,10 @@ public:
     Buyer(QGraphicsItem * parent=0);
 //public slots:
     //void move();
+    void setType();
 private:
     int points;
+    size_t timeWaiting;
 };
 
 #endif // BUYER_H

@@ -49,4 +49,18 @@ Game::Game(QWidget *parent){
   cashregister = new CashRegister();
   cashregister -> setPos(cashregister->x() + 95,cashregister->y() + 400);
   scene->addItem(cashregister);
+
+  cashregister = new CashRegister();
+  cashregister -> setPos(cashregister->x() + 370,cashregister->y() + 400);
+  scene->addItem(cashregister);
+
+  cashregister = new CashRegister();
+  cashregister -> setPos(cashregister->x() + 630,cashregister->y() + 400);
+  scene->addItem(cashregister);
+
+// create the buyers
+  buyer = new Buyer();
+  buyer -> setPos(buyer->x() + 35,buyer->y() + 400);
+  scene->addItem(buyer);
+
 }
