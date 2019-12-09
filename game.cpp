@@ -6,9 +6,10 @@
 #include <QImage>
 #include <QTimer>
 #include <QGraphicsTextItem>
-#include <QFont>
+//#include <QFont>
 #include <QBrush>
 #include <QImage>
+
 
 Game::Game(QWidget *parent){
 // create the scene
@@ -24,19 +25,28 @@ Game::Game(QWidget *parent){
   setFixedSize(800,600);
 //set health
   health = new Health();
-  //healths_.push_back(health);
+  healths_.emplace_back(health);
   health->setPos(health->x() + 15,health->y() + 15);
   scene->addItem(health);
 
   health = new Health();
-//  healths_.push_back(health);
+  healths_.emplace_back(health);
   health->setPos(health->x() + 50,health->y() + 15);
   scene->addItem(health);
 
   health = new Health();
-//  healths_.push_back(health);
+  healths_.emplace_back(health);
   health->setPos(health->x() + 85,health->y() + 15);
   scene->addItem(health);
+  //healths_.remove(health);
+
+  for (std::list<Health>::iterator i = healths_.begin(); i != healths_.end(); i++)
+      if (i == healths_.end())
+      {
+          healths_.erase(i);
+          break;
+      }
+  scene -> removeItem(health);
 //set score
   score = new Score();
   score->setPos(score->x() + 650, score->y() + 10);

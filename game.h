@@ -26,7 +26,7 @@ public:
     Buyer * buyer;
     int healthPoints;
 private:
-    QVector<Health> healths_;
+    std::list<Health> healths_;
     //std::list<Health>::iterator healthIterator;
     QList<CashRegister> cashes_;
     QList<CashRegister>::iterator cashIterator;
