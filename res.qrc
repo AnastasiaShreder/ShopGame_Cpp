@@ -1,0 +1,29 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>robot_cashier.png</file>
+        <file>robot_lamp.png</file>
+        <file>robot_ready.png</file>
+        <file>element_red_square.png</file>
+        <file>scene.png</file>
+        <file>buyer_1.png</file>
+        <file>buyer_1_angry.png</file>
+        <file>buyer_1_zzz.png</file>
+        <file>buyer_2.png</file>
+        <file>buyer_2_angry.png</file>
+        <file>buyer_2_zzz.png</file>
+        <file>buyer_3.png</file>
+        <file>buyer_3_angry.png</file>
+        <file>buyer_3_zzz.png</file>
+        <file>buyer_4.png</file>
+        <file>buyer_4_angry.png</file>
+        <file>buyer_4_zzz.png</file>
+        <file>robot_error.png</file>
+    </qresource>
+    <qresource prefix="/snd">
+        <file>background.mp3</file>
+        <file>ding.wav</file>
+        <file>cash-register.mp3</file>
+        <file>click.wav</file>
+        <file>robot_error.wav</file>
+    </qresource>
+</RCC>
