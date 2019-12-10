@@ -8,7 +8,7 @@
 class Health: public QObject,public QGraphicsPixmapItem {
     Q_OBJECT
 public:
-  Health(QGraphicsItem * parent=0);
+  Health(QGraphicsItem * parent = nullptr);
 };
 
 #endif

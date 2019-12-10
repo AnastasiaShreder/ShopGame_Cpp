@@ -29,7 +29,7 @@ public:
     int healthPoints;
 private:
 
-    //std::vector<Health> healths_;
+    std::vector<Health *> healths_;
     //std::vector<Health>::iterator healthIterator;
     QList<CashRegister> cashes_;
     QList<CashRegister>::iterator cashIterator;
