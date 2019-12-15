@@ -15,18 +15,23 @@
 #include "iterator"
 #include <QList>
 
-extern QGraphicsScene * scene;
+//extern QGraphicsScene * scene;
 
-class Game: public QGraphicsView{
+class Game: public QGraphicsView
+{
 public:
     Game(QWidget * parent=0);
+    void Play();
 
-    QGraphicsScene * scene;
-    Health * health;
-    Score * score;
+    //QGraphicsScene * scene;
+    //Health * health;
+    //Score * score;
     CashRegister * cashregister;
-    Buyer * buyer;
+    //Buyer * buyer;
     int healthPoints;
+public slots:
+    void createBuyers();
+    void gameOver();
 private:
 
     std::vector<Health *> healths_;

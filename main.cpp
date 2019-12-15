@@ -1,18 +1,13 @@
 #include <QApplication>
+#include <QScreen>
 #include "game.h"
 
-/*
-Tutorial Topics:
--QGraphicsPixmapItem, QPixmap, QImage
-*/
-
-//extern Game * game;
-
-int main(int argc, char *argv[]){
-    QApplication a(argc, argv);
-
-    Game *game = new Game();
-    game->show();
-
-    return a.exec();
+int main(int argc, char *argv[])
+{
+  srand(time(nullptr));
+  QApplication a(argc, argv);
+  Game *pGame = new Game();
+  pGame->show();
+  pGame->Play();
+  return a.exec();
 }

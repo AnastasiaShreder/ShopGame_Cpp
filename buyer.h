@@ -5,14 +5,20 @@
 #include <QObject>
 #include <QGraphicsItem>
 
+enum class BuyerType
+{
+    type1, type2, type3, type4
+};
+
 class Buyer: public QObject,public QGraphicsPixmapItem{
     Q_OBJECT
 public:
-    Buyer(QGraphicsItem * parent=0);
+    Buyer(BuyerType buyerType, QGraphicsItem * parent=0);
 //public slots:
     //void move();
-    void setType();
+    void setType(BuyerType buyerType);
 private:
+    BuyerType buyerType_;
     int points;
     size_t timeWaiting;
 };
