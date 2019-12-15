@@ -14,6 +14,8 @@
 #include "buyer.h"
 #include "iterator"
 #include <QList>
+#include "queue.h"
+#include <QGraphicsScene>
 
 //extern QGraphicsScene * scene;
 
@@ -26,13 +28,19 @@ public:
     //QGraphicsScene * scene;
     //Health * health;
     //Score * score;
-    CashRegister * cashregister;
+    //CashRegister * cashregister;
     //Buyer * buyer;
     int healthPoints;
-public slots:
+    void putBuyerToQueue(Queue & queue, Buyer &buyer, CashNumber number);
     void createBuyers();
+public slots:
+    //void createBuyers();
     void gameOver();
 private:
+
+    std::list<Buyer> first_;
+    std::list<Buyer> second_;
+    std::list<Buyer> third_;
 
     std::vector<Health *> healths_;
     //std::vector<Health>::iterator healthIterator;

@@ -10,6 +10,7 @@
 #include <QBrush>
 #include <QImage>
 //#include "healthpoints.h"
+#include "queue.h"
 
 
 Game::Game(QWidget *parent)
@@ -30,11 +31,62 @@ Game::Game(QWidget *parent)
   music->play();
 }
 
+void Game::createBuyers()
+{
+ int cashNumber = 1 + (rand() % 3);
+ int bType = 1 + (rand() % 3);
+ Queue queue;
+ switch (cashNumber)
+ {
+  case 1:
+   {
+   int bType = 1 + (rand() % 3);
+   Buyer * buyer = new Buyer(static_cast<BuyerType>(bType));
+   putBuyerToQueue(queue, *buyer, CashNumber::FIRST);
+   if (first_.size() == 0)
+   {
+     buyer->setPos(buyer->x() + 28, buyer->y() + 435);
+     scene()->addItem(buyer);
+   }
+   else if (first_.size() == 1)
+   {
+     buyer->setPos(buyer->x() + 28, buyer->y() + 435);
+     scene()->addItem(buyer);
+   }
+   else if (first_.size() == 2)
+   {
+
+   }
+   }
+  case 2:
+   {
+   int bType = 1 + (rand() % 3);
+   Buyer * buyer = new Buyer(static_cast<BuyerType>(bType));
+   putBuyerToQueue(*buyer, CashNumber::SECOND);
+   buyer->setPos(buyer->x() + 60, buyer->y() + 340);
+   break;
+   }
+  case 3:
+ {
+   int bType = 1 + (rand() % 3);
+   Buyer * buyer = new Buyer(static_cast<BuyerType>(bType));
+   putBuyerToQueue(*buyer, CashNumber::THIRD);
+   buyer->setPos(buyer->x() + 60, buyer->y() + 340);
+ }
+ }
+
+ //putBuyerToQueue(const Buyer &buyer, CashNumber number)
+
+ Buyer * buyer1 = new Buyer(static_cast<BuyerType>(bType));
+ buyer1 -> setPos(buyer1->x() + 28, buyer1->y() + 435);
+ scene()->addItem(buyer1);
+}
+
 void Game::Play()
 {
   scene()->clear();
   //setCursor(Qt::BlankCursor);
-  createBuyers();
+  //Queue::createBuyers();
   cashregister = new CashRegister();
   cashregister -> setPos(cashregister->x() + 95,cashregister->y() + 400);
   scene()->addItem(cashregister);
@@ -48,31 +100,11 @@ void Game::Play()
   scene()->addItem(cashregister);
 
   QTimer *pTimer = new QTimer(this);
-    connect(pTimer, &QTimer::timeout, this, &Game::createBuyers);
+    connect(pTimer, &QTimer::timeout, this, &queue::createBuyers());
     pTimer->start(2000);
 }
 
-void Game::createBuyers()
-{
- int arrX[3] {28, 60, 88};
- int arrY[3] {28, 60, 88};
- int i = rand()%3;
- int bType = rand() % 3;
- int posX = arrX[i];
- int posY =
- int pos1 =
- int pos2 =
- int pos3 =
- int pos4 =
- int pos5 =
- int pos6 =
- int pos7 =
- int pos8 =
- int pos9 =
- Buyer * buyer1 = new Buyer(static_cast<BuyerType>(bType));
- buyer1 -> setPos(buyer1->x() + 28, buyer1->y() + 435);
- scene()->addItem(buyer1);
-}
+
 
 void Game::gameOver()
 {
