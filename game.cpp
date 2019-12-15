@@ -10,7 +10,7 @@
 #include <QBrush>
 #include <QImage>
 //#include "healthpoints.h"
-#include "queue.h"
+//#include "queue.h"
 
 
 Game::Game(QWidget *parent)
@@ -24,83 +24,151 @@ Game::Game(QWidget *parent)
   setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
   setFixedSize(800,600);
   setCursor(Qt::PointingHandCursor);
-  //setStyleSheet("border-style:none");
   //set music
   QMediaPlayer * music = new QMediaPlayer();
   music->setMedia(QUrl("qrc:/snd/background.mp3"));
   music->play();
+  //set score
+  Score * score = new Score();
+  score->setPos(score->x() + 650, score->y() + 10);
+  scene->addItem(score);
+
 }
 
 void Game::createBuyers()
 {
- int cashNumber = 1 + (rand() % 3);
- int bType = 1 + (rand() % 3);
- Queue queue;
+ int cashNumber = rand() % 3 + 1;
+ //int bType = 1 + (rand() % 3);
  switch (cashNumber)
  {
   case 1:
    {
-   int bType = 1 + (rand() % 3);
+   int bType = rand() % 3;
    Buyer * buyer = new Buyer(static_cast<BuyerType>(bType));
-   putBuyerToQueue(queue, *buyer, CashNumber::FIRST);
-   if (first_.size() == 0)
+   //putBuyerToQueue(1, *buyer);
+   if (first_.empty())
    {
+     putBuyerToQueue(1, *buyer);
      buyer->setPos(buyer->x() + 28, buyer->y() + 435);
      scene()->addItem(buyer);
    }
    else if (first_.size() == 1)
    {
-     buyer->setPos(buyer->x() + 28, buyer->y() + 435);
+     putBuyerToQueue(1, *buyer);
+     buyer->setPos(buyer->x() + 60, buyer->y() + 340);
      scene()->addItem(buyer);
    }
    else if (first_.size() == 2)
    {
-
+     putBuyerToQueue(1, *buyer);
+     buyer->setPos(buyer->x() + 88, buyer->y() + 245);
+     scene()->addItem(buyer);
    }
-   }
-  case 2:
+   else if (first_.size() == 3)
    {
-   int bType = 1 + (rand() % 3);
-   Buyer * buyer = new Buyer(static_cast<BuyerType>(bType));
-   putBuyerToQueue(*buyer, CashNumber::SECOND);
-   buyer->setPos(buyer->x() + 60, buyer->y() + 340);
+     break;
+   }
    break;
    }
-  case 3:
+  case 2:
  {
-   int bType = 1 + (rand() % 3);
+   int bType = rand() % 3;
    Buyer * buyer = new Buyer(static_cast<BuyerType>(bType));
-   putBuyerToQueue(*buyer, CashNumber::THIRD);
-   buyer->setPos(buyer->x() + 60, buyer->y() + 340);
+   //putBuyerToQueue(2, *buyer);
+   if (second_.empty())
+   {
+     putBuyerToQueue(2, *buyer);
+     buyer->setPos(buyer->x() + 300, buyer->y() + 435);
+     scene()->addItem(buyer);
+   }
+   else if (second_.size() == 1)
+   {
+     putBuyerToQueue(2, *buyer);
+     buyer->setPos(buyer->x() + 330, buyer->y() + 340);
+     scene()->addItem(buyer);
+   }
+   else if (second_.size() == 2)
+   {
+     putBuyerToQueue(2, *buyer);
+     buyer->setPos(buyer->x() + 360, buyer->y() + 246);
+     scene()->addItem(buyer);
+   }
+   else if (second_.size() == 3)
+   {
+     break;
+   }
+   break;
  }
+  case 3:
+   int bType = rand() % 3;
+   Buyer * buyer = new Buyer(static_cast<BuyerType>(bType));
+   //putBuyerToQueue(3, *buyer);
+   if (third_.empty())
+   {
+     putBuyerToQueue(3, *buyer);
+     buyer->setPos(buyer->x() + 560, buyer->y() + 435);
+     scene()->addItem(buyer);
+   }
+   else if (third_.size() == 1)
+   {
+     putBuyerToQueue(3, *buyer);
+     buyer->setPos(buyer->x() + 590, buyer->y() + 340);
+     scene()->addItem(buyer);
+   }
+   else if (third_.size() == 2)
+   {
+     putBuyerToQueue(3, *buyer);
+     buyer->setPos(buyer->x() + 620, buyer->y() + 246);
+     scene()->addItem(buyer);
+   }
+   else if (third_.size() == 3)
+   {
+     break;
+   }
  }
 
- //putBuyerToQueue(const Buyer &buyer, CashNumber number)
-
- Buyer * buyer1 = new Buyer(static_cast<BuyerType>(bType));
- buyer1 -> setPos(buyer1->x() + 28, buyer1->y() + 435);
- scene()->addItem(buyer1);
 }
 
+void Game::putBuyerToQueue(int cashNumber, Buyer &buyer)
+{
+  switch (cashNumber)
+  {
+    case 1:
+    {
+      first_.push_back(&buyer);
+      break;
+    }
+    case 2:
+    {
+      second_.push_back(&buyer);
+      break;
+    }
+    case 3:
+  {
+      third_.push_back(&buyer);
+      break;
+  }
+  }
+}
 void Game::Play()
 {
   scene()->clear();
   //setCursor(Qt::BlankCursor);
   //Queue::createBuyers();
-  cashregister = new CashRegister();
-  cashregister -> setPos(cashregister->x() + 95,cashregister->y() + 400);
-  scene()->addItem(cashregister);
+  CashRegister * cashregister_1 = new CashRegister();
+  cashregister_1 -> setPos(cashregister_1->x() + 95,cashregister_1->y() + 400);
+  scene()->addItem(cashregister_1);
 
-  cashregister = new CashRegister();
-  cashregister -> setPos(cashregister->x() + 370,cashregister->y() + 400);
-  scene()->addItem(cashregister);
+  CashRegister * cashregister_2 = new CashRegister();
+  cashregister_2 -> setPos(cashregister_2->x() + 370,cashregister_2->y() + 400);
+  scene()->addItem(cashregister_2);
 
-  cashregister = new CashRegister();
-  cashregister -> setPos(cashregister->x() + 630,cashregister->y() + 400);
-  scene()->addItem(cashregister);
+  CashRegister * cashregister_3 = new CashRegister();
+  cashregister_3 -> setPos(cashregister_3->x() + 630,cashregister_3->y() + 400);
+  scene()->addItem(cashregister_3);
 
   QTimer *pTimer = new QTimer(this);
-    connect(pTimer, &QTimer::timeout, this, &queue::createBuyers());
+    connect(pTimer, &QTimer::timeout, this, &Game::createBuyers);
     pTimer->start(2000);
 }
 
@@ -129,14 +197,7 @@ void Game::gameOver()
 //  healths_.pop_back();
 // //decrease(healths_);
 //  //scene -> removeItem(health);
-////set score
-//  score = new Score();
-//  score->setPos(score->x() + 650, score->y() + 10);
-//  scene->addItem(score);
-//// play background music
-//  QMediaPlayer * music = new QMediaPlayer();
-//  music->setMedia(QUrl("qrc:/snd/background.mp3"));
-//  music->play();
+
 //// create the cashiers
 //  cashregister = new CashRegister();
 //  cashregister -> setPos(cashregister->x() + 95,cashregister->y() + 400);
@@ -149,38 +210,4 @@ void Game::gameOver()
 //  cashregister = new CashRegister();
 //  cashregister -> setPos(cashregister->x() + 630,cashregister->y() + 400);
 //  scene->addItem(cashregister);
-
-// create the buyers
-
-//  Buyer * buyer2 = new Buyer();
-//  buyer2 -> setPos(buyer2->x() + 60,buyer2->y() + 340);
-//  scene->addItem(buyer2);
-
-//  Buyer * buyer3 = new Buyer();
-//  buyer3 -> setPos(buyer3->x() + 88,buyer3->y() + 245);
-//  scene->addItem(buyer3);
-
-//  Buyer * buyer4 = new Buyer();
-//  buyer4 -> setPos(buyer4->x() + 300,buyer4->y() + 435);
-//  scene->addItem(buyer4);
-
-//  Buyer * buyer5 = new Buyer();
-//  buyer5 -> setPos(buyer5->x() + 330,buyer5->y() + 340);
-//  scene->addItem(buyer5);
-
-//  Buyer * buyer6 = new Buyer();
-//  buyer6 -> setPos(buyer6->x() + 360,buyer6->y() + 246);
-//  scene->addItem(buyer6);
-
-//  Buyer * buyer7 = new Buyer();
-//  buyer7 -> setPos(buyer7->x() + 560,buyer7->y() + 435);
-//  scene->addItem(buyer7);
-
-//  Buyer * buyer8 = new Buyer();
-//  buyer8 -> setPos(buyer8->x() + 590,buyer8->y() + 340);
-//  scene->addItem(buyer8);
-
-//  Buyer * buyer9 = new Buyer();
-//  buyer9 -> setPos(buyer9->x() + 620,buyer9->y() + 246);
-//  scene->addItem(buyer9);
 

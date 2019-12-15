@@ -23,7 +23,7 @@ SOURCES += \
     health.cpp \
     #healthpoints.cpp \
     main.cpp \
-    queue.cpp \
+    #queue.cpp \
     score.cpp
 
 HEADERS += \
@@ -32,7 +32,7 @@ HEADERS += \
     game.h \
     health.h \
     #healthpoints.h \
-    queue.h \
+    #queue.h \
     score.h
 
 FORMS += \
