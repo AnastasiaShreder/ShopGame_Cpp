@@ -11,7 +11,8 @@ class CashRegister:public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    CashRegister(QGraphicsItem * parent=0);
+    CashRegister(QGraphicsItem * parent = nullptr);
+    void changeStatus(int statusNumber);
 private:
     QMediaPlayer * cashsound;
     QMediaPlayer * clicksound;

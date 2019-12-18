@@ -46,6 +46,10 @@ void Buyer::setType(BuyerType buyerType)
         break;
     }
   }
-
 }
+    Buyer::~Buyer()
+    {
+      scene()->removeItem(this);
+    }
+
 

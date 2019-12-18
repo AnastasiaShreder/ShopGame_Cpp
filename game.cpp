@@ -1,6 +1,7 @@
 #include <QFont>
 #include "game.h"
 #include "score.h"
+#include "cashregister.h"
 #include <QMediaPlayer>
 #include <QBrush>
 #include <QImage>
@@ -9,6 +10,7 @@
 //#include <QFont>
 #include <QBrush>
 #include <QImage>
+//#include "switch.h"
 //#include "healthpoints.h"
 //#include "queue.h"
 
@@ -35,6 +37,27 @@ Game::Game(QWidget *parent)
 
 }
 
+//void Game::mousePressEvent(QMouseEvent *event)
+//{
+//    if(event->button()==Qt::RightButton)
+//        emit btnRightClicked();
+//}
+
+//void Game::changeStatus(int statusNumber)
+//{
+//  switch (statusNumber)
+//  {
+//    case 1:
+//    setPixmap(QPixmap(":/img/robot_lamp.png"));
+//    break;
+//  case 2:
+//    setPixmap(QPixmap(":/img/robot_error.png"));
+//    break;
+//  case 3:
+//    setPixmap(QPixmap(":/img/robot_ready.png"));
+//    break;
+//  }
+//}
 void Game::createBuyers()
 {
  int cashNumber = rand() % 3 + 1;
@@ -51,6 +74,9 @@ void Game::createBuyers()
      putBuyerToQueue(1, *buyer);
      buyer->setPos(buyer->x() + 28, buyer->y() + 435);
      scene()->addItem(buyer);
+     cashIter_1 = first_.begin();
+     //CashRegister::changeStatus(1);
+     //QTimer::singleShot(5000, &cashregister_1, CashRegister::changeStatus(3))
    }
    else if (first_.size() == 1)
    {
@@ -80,6 +106,7 @@ void Game::createBuyers()
      putBuyerToQueue(2, *buyer);
      buyer->setPos(buyer->x() + 300, buyer->y() + 435);
      scene()->addItem(buyer);
+     cashIter_2 = second_.begin();
    }
    else if (second_.size() == 1)
    {
@@ -100,6 +127,7 @@ void Game::createBuyers()
    break;
  }
   case 3:
+ {
    int bType = rand() % 3;
    Buyer * buyer = new Buyer(static_cast<BuyerType>(bType));
    //putBuyerToQueue(3, *buyer);
@@ -108,6 +136,7 @@ void Game::createBuyers()
      putBuyerToQueue(3, *buyer);
      buyer->setPos(buyer->x() + 560, buyer->y() + 435);
      scene()->addItem(buyer);
+     cashIter_3 = third_.begin();
    }
    else if (third_.size() == 1)
    {
@@ -126,7 +155,7 @@ void Game::createBuyers()
      break;
    }
  }
-
+ }
 }
 
 void Game::putBuyerToQueue(int cashNumber, Buyer &buyer)
@@ -150,27 +179,49 @@ void Game::putBuyerToQueue(int cashNumber, Buyer &buyer)
   }
   }
 }
+void Game::createCashes()
+{
+  CashRegister * cashregister_1 = new CashRegister();
+  cashes_.push_back(cashregister_1);
+  cashregister_1 -> setPos(cashregister_1->x() + 95,cashregister_1->y() + 400);
+  scene()->addItem(cashregister_1);
+
+  CashRegister * cashregister_2 = new CashRegister();
+  cashes_.push_back(cashregister_2);
+  cashregister_2 -> setPos(cashregister_2->x() + 370,cashregister_2->y() + 400);
+  scene()->addItem(cashregister_2);
+
+  CashRegister * cashregister_3 = new CashRegister();
+  cashes_.push_back(cashregister_3);
+  cashregister_3 -> setPos(cashregister_3->x() + 630,cashregister_3->y() + 400);
+  scene()->addItem(cashregister_3);
+
+}
 void Game::Play()
 {
   scene()->clear();
   //setCursor(Qt::BlankCursor);
   //Queue::createBuyers();
-  CashRegister * cashregister_1 = new CashRegister();
-  cashregister_1 -> setPos(cashregister_1->x() + 95,cashregister_1->y() + 400);
-  scene()->addItem(cashregister_1);
+  createCashes();
 
-  CashRegister * cashregister_2 = new CashRegister();
-  cashregister_2 -> setPos(cashregister_2->x() + 370,cashregister_2->y() + 400);
-  scene()->addItem(cashregister_2);
-
-  CashRegister * cashregister_3 = new CashRegister();
-  cashregister_3 -> setPos(cashregister_3->x() + 630,cashregister_3->y() + 400);
-  scene()->addItem(cashregister_3);
+  //if (first_.size())
 
   QTimer *pTimer = new QTimer(this);
     connect(pTimer, &QTimer::timeout, this, &Game::createBuyers);
-    pTimer->start(2000);
+    pTimer->start(3000);
+
+  //if (cashIter_1 == first_.begin())
+
 }
+
+//int Game::timer(int time)
+//{
+//  for (int i = 0; i < time; i++)
+//    return i;
+//}
+
+//changeCash(3);
+
 
 
 

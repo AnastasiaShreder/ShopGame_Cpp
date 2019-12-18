@@ -18,6 +18,7 @@
 #include <QGraphicsScene>
 #include <cstdlib>
 
+
 //extern QGraphicsScene * scene;
 
 class Game: public QGraphicsView
@@ -36,9 +37,14 @@ public:
     void putBuyerToQueue(int cashNumber, Buyer &buyer);
     Buyer getElementFromQueue(std::list<Buyer> list);
     void createBuyers();
+    void createCashes();
+    void changeStatus(int statusNumber);
+    int timer(int time);
+    //void mousePressEvent(QMouseEvent *event);
 public slots:
     //void createBuyers();
     void gameOver();
+    //void changeCash(int status);
 private:
 
     std::list<Buyer *> first_;
@@ -47,10 +53,12 @@ private:
 
     std::vector<Health *> healths_;
     //std::vector<Health>::iterator healthIterator;
-    QList<CashRegister> cashes_;
-    QList<CashRegister>::iterator cashIterator;
-    //QList<Buyer> buyers_;
-    //QList<Buyer>::iterator buyerIterator;
+    std::list<CashRegister *> cashes_;
+    std::list<CashRegister *>::iterator cashIterator;
+//    //QList<Buyer> buyers_;
+    std::list<Buyer *>::iterator cashIter_1;
+    std::list<Buyer *>::iterator cashIter_2;
+    std::list<Buyer *>::iterator cashIter_3;
 
 
 };

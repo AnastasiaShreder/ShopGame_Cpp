@@ -4,6 +4,7 @@
 #include <QGraphicsPixmapItem>
 #include <QObject>
 #include <QGraphicsItem>
+#include <QGraphicsScene>
 
 enum BuyerType
 {
@@ -15,6 +16,7 @@ class Buyer: public QObject, public QGraphicsPixmapItem
 Q_OBJECT
 public:
     Buyer(BuyerType buyerType, QGraphicsItem * parent = nullptr);
+    ~Buyer();
 //public slots:
     //void move();
     void setType(BuyerType buyerType);
