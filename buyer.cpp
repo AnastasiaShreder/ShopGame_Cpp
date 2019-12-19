@@ -52,4 +52,10 @@ void Buyer::setType(BuyerType buyerType)
       scene()->removeItem(this);
     }
 
-
+void Buyer::move(int pointX, int pointY)
+{
+  while ((y() <  pointY)&&(x() > pointX))
+  {
+    this->setPos(x() - 1, y() + 1);
+  }
+}

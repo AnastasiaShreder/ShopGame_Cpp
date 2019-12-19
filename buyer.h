@@ -24,6 +24,8 @@ private:
     BuyerType buyerType_;
     int points;
     size_t timeWaiting;
+public slots:
+   void move(int pointX, int pointY);
 };
 
 #endif // BUYER_H

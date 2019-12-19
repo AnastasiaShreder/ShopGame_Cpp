@@ -13,21 +13,55 @@ CashRegister::CashRegister(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
   setPixmap(QPixmap(":/img/robot_cashier"));
 }
 
-void CashRegister::changeStatus(int statusNumber)
+void CashRegister::setStatus(int statusNumber)
 {
   switch (statusNumber)
   {
     case 1:
+      {
       setPixmap(QPixmap(":/img/robot_lamp.png"));
+      pixmap = ":/img/robot_lamp.png";
     break;
+      }
   case 2:
+  {
     setPixmap(QPixmap(":/img/robot_error.png"));
     break;
+  }
   case 3:
+  {
     setPixmap(QPixmap(":/img/robot_ready.png"));
     break;
   }
+  case 4:
+  {
+    setPixmap(QPixmap(":/img/robot_cashier.png"));
+    break;
+   }
+  }
 }
+
+int CashRegister::getStatus()
+{
+  if (pixmap == ":/img/robot_lamp.png")
+  {
+    return 1;
+  }
+  if (pixmap == ":/img/robot_error.png")
+  {
+    return 2;
+  }
+  if (pixmap == ":/img/robot_ready.png")
+  {
+    return 3;
+  }
+}
+//void CashRegister::mousePressEvent(QMouseEvent *event)
+//{
+//   if (getStatus(cashes_[0]))
+//    if(event->button()==Qt::RightButton)
+//        emit btnRightClicked();
+//}
 // void
 // set graphic
 // robotError = new QGraphicsPixmapItem

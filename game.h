@@ -25,7 +25,7 @@ class Game: public QGraphicsView
 {
   Q_OBJECT
 public:
-    Game(QWidget * parent=0);
+    Game();
     void Play();
 
     //QGraphicsScene * scene;
@@ -39,24 +39,24 @@ public:
     void createBuyers();
     void createCashes();
     void changeStatus(int statusNumber);
-    int timer(int time);
-    //void mousePressEvent(QMouseEvent *event);
+    void replaceBuyers(std::list<Buyer*> list);
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
 public slots:
     //void createBuyers();
     void gameOver();
     //void changeCash(int status);
 private:
-
     std::list<Buyer *> first_;
     std::list<Buyer *> second_;
     std::list<Buyer *> third_;
 
     std::vector<Health *> healths_;
     //std::vector<Health>::iterator healthIterator;
-    std::list<CashRegister *> cashes_;
+    std::vector<CashRegister *> cashes_;
     std::list<CashRegister *>::iterator cashIterator;
 //    //QList<Buyer> buyers_;
-    std::list<Buyer *>::iterator cashIter_1;
+    std::list<Buyer *>::iterator buyerIter_1;
     std::list<Buyer *>::iterator cashIter_2;
     std::list<Buyer *>::iterator cashIter_3;
 
