@@ -49,7 +49,7 @@ void Buyer::setType(BuyerType buyerType)
 }
     Buyer::~Buyer()
     {
-      scene()->removeItem(this);
+      //scene()->removeItem(this);
     }
 
 void Buyer::move(int pointX, int pointY)

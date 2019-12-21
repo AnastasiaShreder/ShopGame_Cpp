@@ -26,16 +26,19 @@ void CashRegister::setStatus(int statusNumber)
   case 2:
   {
     setPixmap(QPixmap(":/img/robot_error.png"));
+    pixmap = ":/img/robot_error.png";
     break;
   }
   case 3:
   {
     setPixmap(QPixmap(":/img/robot_ready.png"));
+    pixmap = ":/img/robot_ready.png";
     break;
   }
   case 4:
   {
     setPixmap(QPixmap(":/img/robot_cashier.png"));
+    pixmap = ":/img/robot_cashier.png";
     break;
    }
   }
@@ -54,6 +57,10 @@ int CashRegister::getStatus()
   if (pixmap == ":/img/robot_ready.png")
   {
     return 3;
+  }
+  if (pixmap == ":/img/robot_cashier.png")
+  {
+    return 4;
   }
 }
 //void CashRegister::mousePressEvent(QMouseEvent *event)

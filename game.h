@@ -38,15 +38,20 @@ public:
     Buyer getElementFromQueue(std::list<Buyer> list);
     void createBuyers();
     void createCashes();
+    void createHealths();
     void changeStatus(int statusNumber);
-    void replaceBuyers(std::list<Buyer*> list);
+    void increaseScore();
+    void replaceBuyers(std::list<Buyer*> &list, std::list<Buyer*>::iterator &iter, unsigned int i);
 protected:
     void keyPressEvent(QKeyEvent *event) override;
 public slots:
     //void createBuyers();
     void gameOver();
+    //void decreaseHealth();
+    //void increaseScore();
     //void changeCash(int status);
 private:
+    Score * score = nullptr;
     std::list<Buyer *> first_;
     std::list<Buyer *> second_;
     std::list<Buyer *> third_;
@@ -54,11 +59,11 @@ private:
     std::vector<Health *> healths_;
     //std::vector<Health>::iterator healthIterator;
     std::vector<CashRegister *> cashes_;
-    std::list<CashRegister *>::iterator cashIterator;
+    std::vector<CashRegister *>::iterator cashIterator;
 //    //QList<Buyer> buyers_;
     std::list<Buyer *>::iterator buyerIter_1;
-    std::list<Buyer *>::iterator cashIter_2;
-    std::list<Buyer *>::iterator cashIter_3;
+    std::list<Buyer *>::iterator buyerIter_2;
+    std::list<Buyer *>::iterator buyerIter_3;
 
 
 };
