@@ -7,65 +7,38 @@
 #include <QObject>
 #include <QGraphicsItem>
 #include <QGraphicsPixmapItem>
-#include "health.h"
-#include "score.h"
-#include "cashregister.h"
+#include <QKeyEvent>
 #include <list>
-#include "buyer.h"
-#include "iterator"
-#include <QList>
-#include "queue.h"
-#include <QGraphicsScene>
+#include <iterator>
 #include <cstdlib>
-
-
-//extern QGraphicsScene * scene;
+#include "cashregister.h"
+#include "buyer.h"
+#include "score.h"
 
 class Game: public QGraphicsView
 {
   Q_OBJECT
-public:
+  public:
     Game();
     void Play();
-
-    //QGraphicsScene * scene;
-    //Health * health;
-    //Score * score;
-    //CashRegister * cashregister;
-    //Buyer * buyer;
-    int healthPoints;
     void putBuyerToQueue(int cashNumber, Buyer &buyer);
-    Buyer getElementFromQueue(std::list<Buyer> list);
     void createBuyers();
     void createCashes();
-    void createHealths();
     void changeStatus(int statusNumber);
     void increaseScore();
     void replaceBuyers(std::list<Buyer*> &list, std::list<Buyer*>::iterator &iter, unsigned int i);
-protected:
+  protected:
     void keyPressEvent(QKeyEvent *event) override;
-public slots:
-    //void createBuyers();
-    void gameOver();
-    //void decreaseHealth();
-    //void increaseScore();
-    //void changeCash(int status);
-private:
+  private:
     Score * score = nullptr;
-    std::list<Buyer *> first_;
-    std::list<Buyer *> second_;
-    std::list<Buyer *> third_;
-
-    std::vector<Health *> healths_;
-    //std::vector<Health>::iterator healthIterator;
+    std::list<Buyer *> first_;  //list buyers from first cash
+    std::list<Buyer *> second_; //list buyers from second cash
+    std::list<Buyer *> third_;  //list buyers from third cash
     std::vector<CashRegister *> cashes_;
     std::vector<CashRegister *>::iterator cashIterator;
-//    //QList<Buyer> buyers_;
-    std::list<Buyer *>::iterator buyerIter_1;
-    std::list<Buyer *>::iterator buyerIter_2;
-    std::list<Buyer *>::iterator buyerIter_3;
-
-
+    std::list<Buyer *>::iterator buyerIter_1; //iterator for first_
+    std::list<Buyer *>::iterator buyerIter_2; //iterator for second_
+    std::list<Buyer *>::iterator buyerIter_3; //iterator for third_
 };
 
 #endif // GAME_H

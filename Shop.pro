@@ -20,7 +20,6 @@ SOURCES += \
     buyer.cpp \
     cashregister.cpp \
     game.cpp \
-    health.cpp \
     #healthpoints.cpp \
     main.cpp \
     #queue.cpp \
@@ -30,7 +29,6 @@ HEADERS += \
     buyer.h \
     cashregister.h \
     game.h \
-    health.h \
     #healthpoints.h \
     #queue.h \
     score.h
